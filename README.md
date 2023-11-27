@@ -10,7 +10,7 @@
 <p align ="center">
   <a href="https://www.youtube.com/watch?v=-RhS38dKmUY"><img src ="https://img.shields.io/badge/youtube-FF0000.svg?&style=for-the-badge&logo=youtube&logoColor=white"/></a>
   </br>
-  <img src="https://github.com/MpqM/HyperledgerFabric-SSI/assets/79093184/2d85534c-5651-49a1-832b-f9df587cd309">
+  <img src="https://github.com/MpqM/HyperledgerFabric_SSI/assets/79093184/56bd1b8d-6dfc-468b-ae47-3d61733919ca">
 </p>
 
 - - -
