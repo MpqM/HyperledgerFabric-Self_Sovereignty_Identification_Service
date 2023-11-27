@@ -1,0 +1,25 @@
+.holder {
+    padding-top: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.issuer {
+    padding-top: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.verifier {
+    padding-top: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+
+.container {
+    display: flex;
+    padding: 0px;
+    justify-content: center;
+    gap: 10px;
+}

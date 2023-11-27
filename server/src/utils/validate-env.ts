@@ -1,0 +1,31 @@
+import { cleanEnv } from "envalid"; 
+import { port, str } from "envalid/dist/validators";
+
+export default cleanEnv(process.env, {
+    PORT: port(),
+    MONGO_CONNECTION_STRING: str(),
+    SESSION_SECRET: str(),
+    CHANNEL_NAME: str(),
+    CHAINCODE_NAME:str(),
+    ORG1_MSP_ID: str(),
+    ORG1_CRYPTO_PATH: str(),
+    ORG1_KEY_DIRECTORY_PATH: str(),
+    ORG1_CERT_PATH: str(),
+    ORG1_TLS_CERT_PATH: str(),
+    ORG1_PEER_ENDPOINT: str(),
+    ORG1_PEER_HOST_ALIAS: str(),
+    ORG2_MSP_ID: str(),
+    ORG2_CRYPTO_PATH: str(),
+    ORG2_KEY_DIRECTORY_PATH: str(),
+    ORG2_CERT_PATH: str(),
+    ORG2_TLS_CERT_PATH: str(),
+    ORG2_PEER_ENDPOINT: str(),
+    ORG2_PEER_HOST_ALIAS: str(),
+    ORG3_MSP_ID: str(),
+    ORG3_CRYPTO_PATH: str(),
+    ORG3_KEY_DIRECTORY_PATH: str(),
+    ORG3_CERT_PATH: str(),
+    ORG3_TLS_CERT_PATH: str(),
+    ORG3_PEER_ENDPOINT: str(),
+    ORG3_PEER_HOST_ALIAS: str(),
+});

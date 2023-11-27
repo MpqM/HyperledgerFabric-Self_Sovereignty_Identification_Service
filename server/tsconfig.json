@@ -1,0 +1,15 @@
+{
+    "compilerOptions": {
+        "module": "NodeNext",
+        "strict": true,
+        // "moduleResolution": "node",
+        "declaration": true,
+        "outDir": "dist",
+        "sourceMap": true,
+        "typeRoots": ["./node_modules/@types", "./src/utils/" ],  
+        "noImplicitAny": true,
+    },
+    "ts-node": { "files": true },
+    "include": ["src/**/*.ts"],
+    "exclude": ["node_modules"]
+}

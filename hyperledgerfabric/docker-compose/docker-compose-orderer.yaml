@@ -1,0 +1,121 @@
+version: '3' 
+networks: 
+  fabric:
+
+services:
+  orderer0.ordererorg.com:
+    container_name: orderer0.ordererorg.com
+    image: hyperledger/fabric-orderer:2.5
+    dns_search: .
+    environment:
+      - FABRIC_LOGGING_SPEC=INFO
+      - ORDERER_GENERAL_LOGLEVEL=INFO
+      - ORDERER_GENERAL_LISTENADDRESS=0.0.0.0
+      - ORDERER_GENERAL_LISTENPORT=7051
+      - ORDERER_GENERAL_GENESISMETHOD=file
+      - ORDERER_GENERAL_GENESISFILE=/var/hyperledger/orderer/genesis.block
+      # - ORDERER_GENERAL_BOOTSTRAPMETHOD=file 
+      # - ORDERER_GENERAL_BOOTSTRAPFILE=/var/hyperledger/orderer/genesis.block
+      - ORDERER_GENERAL_LOCALMSPID=ordererorgMSP 
+      - ORDERER_GENERAL_LOCALMSPDIR=/var/hyperledger/orderer/msp
+      - ORDERER_GENERAL_TLS_ENABLED=true 
+      - ORDERER_GENERAL_TLS_PRIVATEKEY=/var/hyperledger/orderer/tls/server.key 
+      - ORDERER_GENERAL_TLS_CERTIFICATE=/var/hyperledger/orderer/tls/server.crt 
+      - ORDERER_GENERAL_TLS_ROOTCAS=[/var/hyperledger/orderer/tls/ca.crt]
+      - ORDERER_KAFKA_VERBOSE=true
+      - ORDERER_GENERAL_CLUSTER_CLIENTCERTIFICATE=/var/hyperledger/orderer/tls/server.crt 
+      - ORDERER_GENERAL_CLUSTER_CLIENTPRIVATEKEY=/var/hyperledger/orderer/tls/server.key
+      - ORDERER_GENERAL_CLUSTER_ROOTCAS=[/var/hyperledger/orderer/tls/ca.crt]
+      - ORDERER_METRICS_PROVIDER=prometheus
+      - ORDERER_OPERATIONS_LISTENADDRESS=0.0.0.0:7071
+      - TZ=Asia/Seoul 
+    working_dir: /opt/gopath/src/github.com/hyperledger/fabric/orderers
+    command: orderer
+    volumes:
+      - ../artifact/block_tx/genesis.block:/var/hyperledger/orderer/genesis.block
+      - ../artifact/crypto-config/ordererOrganizations/ordererorg.com/orderers/orderer0.ordererorg.com/msp:/var/hyperledger/orderer/msp
+      - ../artifact/crypto-config/ordererOrganizations/ordererorg.com/orderers/orderer0.ordererorg.com/tls:/var/hyperledger/orderer/tls
+      # - ../artifact/data/orderer0.ordererorg.com/:/var/hyperledger/production
+    ports:
+      - 7051:7051
+      - 7071:7071
+    networks:
+      - fabric
+
+  orderer1.ordererorg.com:
+      container_name: orderer1.ordererorg.com
+      image: hyperledger/fabric-orderer:2.5
+      dns_search: .
+      environment:
+        - FABRIC_LOGGING_SPEC=INFO
+        - ORDERER_GENERAL_LOGLEVEL=INFO
+        - ORDERER_GENERAL_LISTENADDRESS=0.0.0.0
+        - ORDERER_GENERAL_LISTENPORT=7052
+        - ORDERER_GENERAL_GENESISMETHOD=file
+        - ORDERER_GENERAL_GENESISFILE=/var/hyperledger/orderer/genesis.block
+        # - ORDERER_GENERAL_BOOTSTRAPMETHOD=file 
+        # - ORDERER_GENERAL_BOOTSTRAPFILE=/var/hyperledger/orderer/genesis.block
+        - ORDERER_GENERAL_LOCALMSPID=ordererorgMSP 
+        - ORDERER_GENERAL_LOCALMSPDIR=/var/hyperledger/orderer/msp
+        - ORDERER_GENERAL_TLS_ENABLED=true 
+        - ORDERER_GENERAL_TLS_PRIVATEKEY=/var/hyperledger/orderer/tls/server.key 
+        - ORDERER_GENERAL_TLS_CERTIFICATE=/var/hyperledger/orderer/tls/server.crt 
+        - ORDERER_GENERAL_TLS_ROOTCAS=[/var/hyperledger/orderer/tls/ca.crt]
+        - ORDERER_KAFKA_VERBOSE=true
+        - ORDERER_GENERAL_CLUSTER_CLIENTCERTIFICATE=/var/hyperledger/orderer/tls/server.crt 
+        - ORDERER_GENERAL_CLUSTER_CLIENTPRIVATEKEY=/var/hyperledger/orderer/tls/server.key
+        - ORDERER_GENERAL_CLUSTER_ROOTCAS=[/var/hyperledger/orderer/tls/ca.crt]
+        - ORDERER_METRICS_PROVIDER=prometheus
+        - ORDERER_OPERATIONS_LISTENADDRESS=0.0.0.0:7072
+        - TZ=Asia/Seoul 
+      working_dir: /opt/gopath/src/github.com/hyperledger/fabric/orderers
+      command: orderer
+      volumes:
+        - ../artifact/block_tx/genesis.block:/var/hyperledger/orderer/genesis.block
+        - ../artifact/crypto-config/ordererOrganizations/ordererorg.com/orderers/orderer1.ordererorg.com/msp:/var/hyperledger/orderer/msp
+        - ../artifact/crypto-config/ordererOrganizations/ordererorg.com/orderers/orderer1.ordererorg.com/tls:/var/hyperledger/orderer/tls
+        # - ../artifact/data/orderer1.ordererorg.com/:/var/hyperledger/production
+      ports:
+        - 7052:7052
+        - 7072:7071
+      networks:
+        - fabric
+
+  orderer2.ordererorg.com:
+      container_name: orderer2.ordererorg.com
+      image: hyperledger/fabric-orderer:2.5
+      dns_search: .
+      environment:
+        - FABRIC_LOGGING_SPEC=INFO
+        - ORDERER_GENERAL_LOGLEVEL=INFO
+        - ORDERER_GENERAL_LISTENADDRESS=0.0.0.0
+        - ORDERER_GENERAL_LISTENPORT=7053
+        - ORDERER_GENERAL_GENESISMETHOD=file
+        - ORDERER_GENERAL_GENESISFILE=/var/hyperledger/orderer/genesis.block
+        # - ORDERER_GENERAL_BOOTSTRAPMETHOD=file 
+        # - ORDERER_GENERAL_BOOTSTRAPFILE=/var/hyperledger/orderer/genesis.block
+        - ORDERER_GENERAL_LOCALMSPID=ordererorgMSP 
+        - ORDERER_GENERAL_LOCALMSPDIR=/var/hyperledger/orderer/msp
+        - ORDERER_GENERAL_TLS_ENABLED=true 
+        - ORDERER_GENERAL_TLS_PRIVATEKEY=/var/hyperledger/orderer/tls/server.key 
+        - ORDERER_GENERAL_TLS_CERTIFICATE=/var/hyperledger/orderer/tls/server.crt 
+        - ORDERER_GENERAL_TLS_ROOTCAS=[/var/hyperledger/orderer/tls/ca.crt]
+        - ORDERER_KAFKA_VERBOSE=true
+        - ORDERER_GENERAL_CLUSTER_CLIENTCERTIFICATE=/var/hyperledger/orderer/tls/server.crt 
+        - ORDERER_GENERAL_CLUSTER_CLIENTPRIVATEKEY=/var/hyperledger/orderer/tls/server.key
+        - ORDERER_GENERAL_CLUSTER_ROOTCAS=[/var/hyperledger/orderer/tls/ca.crt]
+        - ORDERER_METRICS_PROVIDER=prometheus
+        - ORDERER_OPERATIONS_LISTENADDRESS=0.0.0.0:7073
+        - TZ=Asia/Seoul 
+      working_dir: /opt/gopath/src/github.com/hyperledger/fabric/orderers
+      command: orderer
+      volumes:
+        - ../artifact/block_tx/genesis.block:/var/hyperledger/orderer/genesis.block
+        - ../artifact/crypto-config/ordererOrganizations/ordererorg.com/orderers/orderer2.ordererorg.com/msp:/var/hyperledger/orderer/msp
+        - ../artifact/crypto-config/ordererOrganizations/ordererorg.com/orderers/orderer2.ordererorg.com/tls:/var/hyperledger/orderer/tls
+        # - ../artifact/data/orderer2.ordererorg.com/:/var/hyperledger/production
+      ports:
+        - 7053:7053
+        - 7073:7071
+      networks:
+        - fabric

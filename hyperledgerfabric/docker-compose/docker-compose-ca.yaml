@@ -1,0 +1,80 @@
+version: '3' 
+networks: 
+  fabric:
+        
+services:
+  ca.ordererorg.com:
+    container_name: ca.ordererorg.com
+    hostname: ca.ordererorg.com
+    image: 'hyperledger/fabric-ca:1.5.5' 
+    environment: 
+      - FABRIC_CA_SERVER_HOME=/etc/hyperledger/fabric-ca-server # ca server home
+      - FABRIC_CA_SERVER_CA_NAME=ca.ordererorg.com # ca server name
+      - FABRIC_CA_SERVER_TLS_ENABLED=true # ca server tls o
+      - FABRIC_CA_SERVER_PORT=7060 # ca server port 7060
+      - FABRIC_CA_SERVER_DEBUG=true # ca server logging -> DEBUG
+      # - FABRIC_CA_SERVER_SIGNING_DEFAULT_EXPIRY=876600h # Certificate expiration date issued by ca server, 100 years
+      # - FABRIC_CA_SERVER_SIGNING_PROFILES_TLS_EXPIRY=876600h # TLS Certificate expiration date issued by ca server, 100 years
+      # - FABRIC_CA_SERVER_CSR_CA_EXPIRY=876600h # Root Certificate expiration date issued by ca server, 100 years
+      # - TZ=Asia/Seoul # time zone
+    ports: # outside of container port forwarding
+      - '7060:7060'
+    command: sh -c 'fabric-ca-server start -b admin:adminpw -d' # container first command
+    volumes: # outside of container mount
+      - ../artifact/fabric-ca/ordererorg:/etc/hyperledger/fabric-ca-server
+    networks: # docker network
+      - fabric
+    
+  ca.org1.com:
+    container_name: ca.org1.com
+    hostname: ca.org1.com
+    image: 'hyperledger/fabric-ca:1.5.5'
+    environment:
+      - FABRIC_CA_SERVER_HOME=/etc/hyperledger/fabric-ca-server
+      - FABRIC_CA_SERVER_CA_NAME=ca.org1.com
+      - FABRIC_CA_SERVER_TLS_ENABLED=true
+      - FABRIC_CA_SERVER_PORT=8060 
+      - FABRIC_CA_SERVER_DEBUG=true
+    ports:
+      - '8060:8060'
+    command: sh -c 'fabric-ca-server start -b admin:adminpw -d'
+    volumes:
+      - '../artifact/fabric-ca/org1:/etc/hyperledger/fabric-ca-server'
+    networks:
+      - fabric
+
+  ca.org2.com:
+    container_name: ca.org2.com
+    hostname: ca.org2.com
+    image: 'hyperledger/fabric-ca:1.5.5'
+    environment:
+      - FABRIC_CA_SERVER_HOME=/etc/hyperledger/fabric-ca-server
+      - FABRIC_CA_SERVER_CA_NAME=ca.org2.com
+      - FABRIC_CA_SERVER_TLS_ENABLED=true
+      - FABRIC_CA_SERVER_PORT=9060
+      - FABRIC_CA_SERVER_DEBUG=true
+    ports:
+      - '9060:9060'
+    command: sh -c 'fabric-ca-server start -b admin:adminpw -d'
+    volumes:
+      - '../artifact/fabric-ca/org2:/etc/hyperledger/fabric-ca-server'
+    networks:
+      - fabric
+
+  ca.org3.com:
+    container_name: ca.org3.com
+    hostname: ca.org3.com
+    image: 'hyperledger/fabric-ca:1.5.5'
+    environment:
+      - FABRIC_CA_SERVER_HOME=/etc/hyperledger/fabric-ca-server
+      - FABRIC_CA_SERVER_CA_NAME=ca.org3.com
+      - FABRIC_CA_SERVER_TLS_ENABLED=true
+      - FABRIC_CA_SERVER_PORT=10060
+      - FABRIC_CA_SERVER_DEBUG=true
+    ports:
+      - '10060:10060'
+    command: sh -c 'fabric-ca-server start -b admin:adminpw -d'
+    volumes:
+      - '../artifact/fabric-ca/org3:/etc/hyperledger/fabric-ca-server'
+    networks:
+      - fabric

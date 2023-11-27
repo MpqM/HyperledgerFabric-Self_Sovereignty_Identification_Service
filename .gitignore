@@ -1,0 +1,10 @@
+/client/node_modules
+/client/react-app-env.d.ts
+/client/reportWebVitals.ts
+/client/setupTest.ts
+/hyperledgerfabric/bin/**
+/hyperledgerfabric/chaincode/did/vendor
+/hyperledgerfabric/chaincode/did/go.mod
+/hyperledgerfabric/chaincode/did/go.sum
+/server/logs
+/server/node_modules
