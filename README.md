@@ -1,4 +1,4 @@
-# HyperledgerFabric-Self_Sovereignty_Identification_Service
+# HyperledgerFabric-SSI
 #### ⚪ About Project
 * ##### 디지털 환경에서 개인신원 관리에 대한 기존방식의 대책을 제시
 * ##### 하이퍼레저 페브릭만의 특성을 활용해 개인 정보 보호, 안정성을 강화 및 DID 기술을 적용한 사용자 신원 관리 방법 개발
